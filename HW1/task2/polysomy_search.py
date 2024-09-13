@@ -1,10 +1,14 @@
 import os
-import subprocess
 from tqdm import tqdm
 import pandas as pd
+from dataclasses import dataclass
+
 import matplotlib.pyplot as plt
 import seaborn as sns
-from dataclasses import dataclass
+sns.set_style("darkgrid", {"axes.facecolor": ".9"})
+
+import warnings
+warnings.simplefilter('ignore')
 
 from utils.run_cmd import run_cmd
 
