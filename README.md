@@ -26,8 +26,7 @@ Practical-BF/
 │   └── hw2_solved.ipynb
 ├── ...
 ├── utils/
-│   ├── utility1.py
-│   ├── utility2.py
+│   ├── run_cmd.py
 │   └── ...
 ├── README.md
 └── requirements.txt
