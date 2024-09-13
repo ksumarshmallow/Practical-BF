@@ -3,7 +3,7 @@ import mygene
 from subprocess import PIPE
 from dataclasses import dataclass
 
-from utils.run_cmd import run_cmd, run_cmd_shell
+from utils.run_cmd import run_cmd
 
 @dataclass
 class GeneCoverageAnalyzer:
