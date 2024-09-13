@@ -48,7 +48,7 @@ class KlinefelterSearcher:
     def get_normalized_reads(self, save_data=False):
         data_karyo = pd.DataFrame(columns = self.chrom_norm)
         
-        for bam_file_path in tqdm(os.listdir(self.data_folder), desc='Process .bam files', colour='green'):
+        for bam_file_path in tqdm(os.listdir(self.data_folder), desc='Process .bam files', leave=True, colour='green'):
             if not bam_file_path.endswith(".bam"):
                 continue
             sample_name = bam_file_path.split(".")[0]
