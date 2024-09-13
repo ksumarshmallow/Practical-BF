@@ -1,4 +1,3 @@
-```markdown
 **Practical-BF**
 ================
 
@@ -42,5 +41,6 @@ pip install -r requirements.txt
 **Авторы**
 ----------
 
+```markdown
 <i>Малкова Ксения Эдуардовна<i>
 ```
