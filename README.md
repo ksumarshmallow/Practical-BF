@@ -26,7 +26,7 @@ git clone https://github.com/your-username/practical-bf.git
 После, для инициализации репозитория запустите команду:
 
 ```bash
-    pip install -e .
+pip install -e .
 ```
 
 Она позволит сделать доступными все пакеты из проекта.
