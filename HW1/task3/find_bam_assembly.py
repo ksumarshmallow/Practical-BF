@@ -50,6 +50,7 @@ class BamAssemblyFinder:
             return None
     
     def find_assembly(self, return_info=False):
+        """Ищет сборку, сначала пытается найти референсный геном, затем программу выравнивания (@PG)"""
         result = self.find_reference_genome()
         
         if not result:
