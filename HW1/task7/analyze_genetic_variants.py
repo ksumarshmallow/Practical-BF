@@ -42,7 +42,7 @@ class GeneticVariantAnalyzer:
             'AF_indicator', 'CHR', 'Allele_Frequency', 'COUNT_ALL', 
             'COUNT_REF', 'COUNT_ALT', 'POS_REF', 'REF', 'ALT', 'POS_ALT', 'Population'
         ])
-        for pop_ in tqdm(self.populations, desc='Подсчет AF...', unit='pop'):
+        for pop_ in tqdm(self.populations, desc='Подсчет AF...', colour='GREEN'):
             af_file = self._get_or_calculate_af_file(pop_)
             df_frequencies = self._update_frequencies(df_frequencies, af_file, pop_)
 
