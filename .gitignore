@@ -1,6 +1,6 @@
 # ignore all data files
-HW1/data
-HW1/task2/data
+**/data
+**/**/data
 
 # ignore pycahce in all folders and subfolders in the project
 **/__pycache__/
