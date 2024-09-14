@@ -1,40 +1,35 @@
 import re
 from dataclasses import dataclass
-
 from utils.run_cmd import run_cmd
 
 @dataclass
 class BamAssemblyFinder:
-    """Класс для поиска сборки .bam файла"""
+    """Класс для поиска сборки в .bam файле."""
     bam_file_path: str
 
     def __post_init__(self):
         self.header = self._get_bam_header()
     
     def _get_bam_header(self):
-        """Выполняет команду для извлечения заголовка BAM файла"""
+        """Выполняет команду для извлечения заголовка BAM файла."""
         cmd = ["samtools", "view", "-H", self.bam_file_path]
         result = run_cmd(cmd).stdout
         return result
 
-    def find_reference_genome(self):
-        """Ищет URI референсного генома в заголовке BAM файла"""
+    def find_assembly(self):
+        """Ищет информацию о сборке в заголовке BAM файла."""
         sq_lines = [line for line in self.header.splitlines() if line.startswith("@SQ")]
         
-        reference_genome_path = None
         for line in sq_lines:
-            match = re.search(r'UR:(\S+)', line)
+            match = re.search(r'AS:(\S+)', line)
             if match:
                 reference_genome_path = match.group(1)
-                break
+                print(f"Найдена сборка (по тегу @SQ в поле AS): {reference_genome_path}")
+                return reference_genome_path
+        
+        print("Сборка (AS в теге @SQ) не найдена")
+        return None
 
-        if reference_genome_path:
-            print(f"Найден путь к референсному файлу: {reference_genome_path}")
-            return reference_genome_path
-        else:
-            print(f"Путь к референсному файлу не найден")
-            return None
-    
     def find_program_info(self):
         """Ищет информацию о программе выравнивания (@PG) в заголовке BAM файла."""
         pg_lines = [line for line in self.header.splitlines() if line.startswith("@PG")]
@@ -46,14 +41,14 @@ class BamAssemblyFinder:
             
             return pg_lines
         else:
-            print("Информации о программе запуска (@PG) нет")
+            print("Информации о программе выравнивания (@PG) нет")
             return None
-    
-    def find_assembly(self, return_info=False):
-        """Ищет сборку, сначала пытается найти референсный геном, затем программу выравнивания (@PG)"""
-        result = self.find_reference_genome()
+
+    def find_assembly_info(self, return_info=False):
+        """Ищет информацию о сборке, сначала пытается найти сборку в @SQ, затем информацию о программе выравнивания (@PG)."""
+        result = self.find_assembly()
         
-        if not result:
+        if result is None:
             result = self.find_program_info()
         
         if return_info:

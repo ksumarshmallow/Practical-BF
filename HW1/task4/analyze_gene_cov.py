@@ -12,14 +12,15 @@ class GeneCoverageAnalyzer:
     gene: str   # can be NCBI/RefSeq id or gene name, or gene symbol
     coverage_threshold: float = 10
     genome_assembly: str = "hg19"  # or hg38
+    species: str = "human"
 
     def __post_init__(self):
         self.data_folder = os.path.dirname(self.bam_file_path)
-        self.gene_coord_file_path = os.path.join(self.data_folder, f"{self.gene}.bed")
+        self.gene_coord_file_path = os.path.join(self.data_folder, f"{self.gene}_{self.species}.bed")
 
         stem = os.path.basename(self.bam_file_path).split('.')[0]
         self.filtered_bed_file_path = os.path.join(self.data_folder, f"{stem}_x{self.coverage_threshold}.bed")
-        self.intersected_file_path = os.path.join(self.data_folder, f"{stem}_{self.gene}.bed")
+        self.intersected_file_path = os.path.join(self.data_folder, f"{stem}_{self.gene}_{self.species}.bed")
     
     def compute(self, return_info=False):
         """Главный метод для поиска доли гена в .bam файле с покрытием больше порогового"""
@@ -58,7 +59,7 @@ class GeneCoverageAnalyzer:
                     "coverage_fraction": coverage_fraction}
 
     def intersect(self):
-        cmd = ["bedtools", "intersect", "-a", self.filtered_bed_file_path, "-b", self.intersected_file_path]
+        cmd = ["bedtools", "intersect", "-a", self.filtered_bed_file_path, "-b", self.gene_coord_file_path]
         result = run_cmd(cmd)
 
         with open(self.intersected_file_path, 'w') as intersect_file:
@@ -71,7 +72,7 @@ class GeneCoverageAnalyzer:
         cmd_genomecov = ["bedtools", "genomecov", "-ibam", self.bam_file_path, "-bg"]
         genomecov_result = run_cmd(cmd_genomecov).stdout
 
-        cmd_awk = ["awk", f'$4 > {self.coverage_threshold}']
+        cmd_awk = f"awk '$4 >= {self.coverage_threshold}'"
         awk_result = run_cmd(cmd_awk, input_data=genomecov_result, shell=True)
         
         with open(self.filtered_bed_file_path, 'w') as bed_file:
@@ -85,7 +86,7 @@ class GeneCoverageAnalyzer:
         mg = mygene.MyGeneInfo()
 
         # Поиск гена
-        gene_info = mg.query(self.gene, species="human", fields=f"genomic_pos_{self.genome_assembly}")
+        gene_info = mg.query(self.gene, species=self.species, fields=f"genomic_pos_{self.genome_assembly}")
 
         if not gene_info['hits']:
             raise ValueError(f"Ген '{self.gene}' не найден")
