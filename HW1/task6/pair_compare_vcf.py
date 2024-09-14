@@ -15,7 +15,7 @@ class VCFComparator:
         self.output_file = os.path.join(self.data_folder, "pairwise_comparisons.csv")
 
     def run_gtcheck(self):
-        cmd = f"bcftools gtcheck {self.vcf_file_path}"
+        cmd = f"bcftools gtcheck -E 0 {self.vcf_file_path}"
         result = run_cmd(cmd, shell=True, capture_output=True, text=True)
         return result.stdout
     
