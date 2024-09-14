@@ -33,7 +33,7 @@ class VCFAssemblyFinder:
         
         if match:
             reference_info = match.group(1)
-            print(f"Найдено reference (по тегу ##reference): {reference_info}")
+            print(f"Найдено референс (по тегу ##reference): {reference_info}")
             return reference_info
         
         print("Ссылка на сборку (по тегу ##reference) не найдена")

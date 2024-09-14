@@ -127,7 +127,7 @@ class GeneticVariantAnalyzer:
         if num_plots == 1:
             axs = [axs]  # для случая, когда есть только 2 популяции
 
-        kwargs = {"color": "skyblue", "edgecolors": 'gray', "s": 50, "alpha": 0.7}
+        kwargs = {"color": "skyblue", "edgecolors": 'gray', "s": 50, "alpha": 0.9}
         
         self.correlations = {}
         self.slopes = {}
@@ -152,13 +152,37 @@ class GeneticVariantAnalyzer:
             # Добавляем линию регрессии
             axs[i].plot(af_pop1, predictions, color="salmon", lw=1.5)
 
-            # Добавляем легенду
-            self.add_legend(axs[i], r_squared)
+            # Добавляем текст на графики
+            text = f"$R^2={r_squared:.2f}$"
+            axs[i].text(0.05, 0.95, text, transform=axs[i].transAxes, fontsize=18, verticalalignment='top')
 
-            axs[i].set_xlabel(f"AF {pop1}", fontsize=14)
-            axs[i].set_ylabel(f"AF {pop2}", fontsize=14)
+            axs[i].set_xlabel(f"AF {pop1}", fontsize=18)
+            axs[i].set_ylabel(f"AF {pop2}", fontsize=18)
 
-        plt.tight_layout()
+            axs[i].tick_params(axis='x', labelsize=14)
+            axs[i].tick_params(axis='y', labelsize=14)
+
+            axs[i].set_xlim(0.05, 1.1)
+            axs[i].set_ylim(0.05, 1.1)
+
+        # добавляем легенду
+        legend_text = ["Генетический вариант", "Линейная регрессия"]
+        plt.figlegend(
+            legend_text,
+            loc='upper center',
+            bbox_to_anchor=(0.5, 1.01),
+            ncol=2,
+            fontsize=20,           # Размер шрифта текста в легенде
+            frameon=False,
+            title=None,
+            # title_fontsize=16,   # Размер шрифта для заголовка
+            handlelength=2.5,      # Длина маркеров
+            markerscale=1.5        # Размер маркеров
+        )
+        
+        plt.subplots_adjust(wspace=.2)     # Устанавливаем отступы между графиками
+        # plt.tight_layout()
+
         plt.show()
     
     def fit_linear_regression(self, af_pop1, af_pop2):
@@ -171,17 +195,3 @@ class GeneticVariantAnalyzer:
         intercept = model.intercept_
         
         return predictions, r_squared, slope, intercept
-    
-    def add_legend(self, ax, r_squared):
-        """Функция для добавления текста в легенду"""
-        legend_text = [f"Генетический вариант", f"Линейная регрессия ($R^2={r_squared:.2f}$)"]
-        ax.legend(
-            legend_text, 
-            loc='upper center', 
-            bbox_to_anchor=(0.5, 1.1), 
-            fontsize='large', 
-            frameon=False, 
-            title=None, 
-            title_fontsize='large',
-            ncol=1
-        )
