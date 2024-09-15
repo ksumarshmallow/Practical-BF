@@ -1,8 +1,5 @@
 import os
 import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-from scipy.stats import pearsonr
 
 from tqdm import tqdm
 from itertools import combinations
@@ -10,6 +7,8 @@ import random
 from dataclasses import dataclass
 
 import matplotlib.pyplot as plt
+from matplotlib.colors import Normalize
+from matplotlib.cm import ScalarMappable, get_cmap
 import seaborn as sns
 import warnings
 from utils.run_cmd import run_cmd
@@ -36,80 +35,79 @@ class GeneticVariantAnalyzer:
     def _log_population_info(self):
         print("Количество образцов в анализируемых популяциях:")
         print(self.population_data['pop'].value_counts())
-
+    
     def calculate_af(self, save_path: str = None) -> pd.DataFrame:
-        df_frequencies = pd.DataFrame(columns=[
-            'AF_indicator', 'CHR', 'Allele_Frequency', 'COUNT_ALL', 
-            'COUNT_REF', 'COUNT_ALT', 'POS_REF', 'REF', 'ALT', 'POS_ALT', 'Population'
-        ])
-        for pop_ in tqdm(self.populations, desc='Подсчет AF...', colour='GREEN'):
+        """Главный метод для подсчета генетических частот для каждого варианта среди всех популяций"""
+        col_names = ["CHROM:POS", "REF", "ALT", "AF", "Population"]
+        df_frequencies = pd.DataFrame(columns=col_names)
+        for pop_ in tqdm(self.populations, desc='Подсчет генетических частот...', colour='GREEN'):
             af_file = self._get_or_calculate_af_file(pop_)
             df_frequencies = self._update_frequencies(df_frequencies, af_file, pop_)
 
+        df_frequencies[["CHROM", "POS"]] = df_frequencies["CHROM:POS"].str.split(':', expand=True).values
+        df_frequencies = df_frequencies[["CHROM", "POS"] + col_names[1:]]
         df_frequencies = self._infer_types(df_frequencies)
         if save_path:
             df_frequencies.to_csv(save_path, index=False)
         return df_frequencies
-    
+
     def _infer_types(self, df: pd.DataFrame) -> pd.DataFrame:
         for col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='ignore', downcast='float')
         return df
 
     def _get_or_calculate_af_file(self, pop_):
-        af_file = f"{self.data_folder}/af_{pop_}.txt"
+        af_file = f"{self.data_folder}/AF_{pop_}.txt"
         if not (os.path.exists(af_file) and os.path.getsize(af_file) > 0):
             self._calculate_af_for_population(pop_)
         return af_file
 
     def _calculate_af_for_population(self, pop_):
+        """Метод для подсчета Allele frequency для заданной популяции"""
+        # 1. Подготавливаем файлы с id образцов для каждой популяции 
         samples_file = self._create_samples_file(pop_)
-        af_file = f"{self.data_folder}/af_{pop_}.txt"
-        bcftools_command = f"bcftools view -S {samples_file} {self.frequency_data_path} | bcftools stats - | grep '^AF' > {af_file}"
-        run_cmd(bcftools_command, shell=True)
+        
+        # 2. Создаем VCF-файлы для каждой популяции (bcftools view) и 
+        # вычисляем частоты аллелей для каждой популяции (bcftools +fill-tags)
+        frequency_data_pop_path = f"{self.data_folder}/data_{pop_}_AF.vcf.gz"
+        bcftools_command = f"bcftools view -S {samples_file} {self.frequency_data_path} | bcftools +fill-tags -- -t AF | bcftools view -Oz -o {frequency_data_pop_path}"
+        run_cmd(bcftools_command, shell=True, check=True)
+
+        # 3. Извлекаем частоты аллелей
+        af_file = f"{self.data_folder}/AF_{pop_}.txt"
+        bcftools_af_command = f"bcftools query -f '%CHROM:%POS %REF %ALT %AF\n' {frequency_data_pop_path} > {af_file}"
+        run_cmd(bcftools_af_command, shell=True, check=True)
         self.af_files[pop_] = af_file
 
     def _create_samples_file(self, pop_):
+        """Создает файлы с sample_id для популяции 'pop_'"""
         samples_file = f"{self.data_folder}/samples_{pop_}.txt"
         awk_command = f"awk '$2 == \"{pop_}\"' {self.population_data_path} | cut -f1 > {samples_file}"
         run_cmd(awk_command, shell=True)
         return samples_file
-
+    
     def _update_frequencies(self, df_frequencies, af_file, pop_):
         with open(af_file, 'r') as f:
-            data = [line.split() for line in f.readlines() if line.startswith('AF')]
+            data = [line.split() for line in f.readlines()]
         df = pd.DataFrame(data, columns=df_frequencies.columns[:-1])
         df['Population'] = pop_
         return pd.concat([df_frequencies, df], ignore_index=True)
-
+    
     def _get_common_positions(self, dfs: dict, populations: list) -> list:
         """Находит общие позиции для всех популяций."""
-        positions = set(dfs[populations[0]].POS_REF.values)
+        positions = set(dfs[populations[0]].POS.values)
         for pop_ in populations[1:]:
-            positions &= set(dfs[pop_].POS_REF.values)
+            positions &= set(dfs[pop_].POS.values)
         return sorted(positions)
 
-    def get_correlation(self, df_frequencies: pd.DataFrame, populations: list = None):
-        df_frequencies, populations = self._check_data(df_frequencies, populations)
-        dfs = self._split_and_filter_dfs(df_frequencies, populations)
-        return self._calculate_correlation(dfs, populations)
-
     def _split_and_filter_dfs(self, df_frequencies, populations):
+        """Разбивает единую таблицу с AF (со всеми популяциями) на несколько таблиц (одна таблица на одну популяцию)"""
         dfs = {pop: df_frequencies[df_frequencies['Population'] == pop] for pop in populations}
         positions = self._get_common_positions(dfs, populations)
-        return {pop: df[df.POS_REF.isin(positions)].drop_duplicates('POS_REF').sort_values("POS_REF") for pop, df in dfs.items()}
-
-    def _calculate_correlation(self, df_frequencies: pd.DataFrame, populations: list = None):
-        df_frequencies, populations = self._check_data(df_frequencies, populations)
-        dfs = self._split_and_filter_dfs(df_frequencies, populations)
-        
-        self.correlations = {}
-        for pop1, pop2 in combinations(populations, 2):
-            corr, _ = pearsonr(dfs[pop1]['Allele_Frequency'], dfs[pop2]['Allele_Frequency'])
-            self.correlations[f'{pop1}_{pop2}'] = corr.item()
-        return self.correlations
+        return {pop: df[df.POS.isin(positions)].drop_duplicates('POS').sort_values("POS") for pop, df in dfs.items()}
 
     def plot_scatter(self, df_frequencies: pd.DataFrame, populations: list = None):
+        """Главный метод для построения графика рассеяния"""
         df_frequencies, populations = self._check_data(df_frequencies, populations)
         dfs = self._split_and_filter_dfs(df_frequencies, populations)
         self._plot_scatter_for_populations(dfs, populations)
@@ -121,40 +119,40 @@ class GeneticVariantAnalyzer:
         if len(pairs) == 1:
             axs = [axs]
 
-        for i, (pop1, pop2) in enumerate(pairs):
-            self._plot_single_scatter(axs[i], dfs[pop1], dfs[pop2], pop1, pop2)
+        # Предполагаем, что вы можете собрать все позиции из всех пар графиков
+        positions = dfs[populations[0]]['POS'].values
 
-        plt.figlegend(["Генетический вариант", "Линейная регрессия"], loc='upper center', bbox_to_anchor=(0.5, 1.01), ncol=2, fontsize=20, frameon=False)
+        # Определение нормализации по глобальному минимуму и максимуму позиций
+        norm = plt.Normalize(vmin=positions.min(), vmax=positions.max())
+        sm = plt.cm.ScalarMappable(cmap='viridis', norm=norm)
+        sm.set_array([])  # Для пустого массива, чтобы colorbar работал
+
+        for i, (pop1, pop2) in enumerate(pairs):
+            self._plot_single_scatter(axs[i], dfs[pop1], dfs[pop2], pop1, pop2, sm)
+
+        # Один colorbar для всех графиков
+        cbar = fig.colorbar(sm, ax=axs, orientation='vertical', pad=0.02)
+        cbar.ax.tick_params(labelsize=14)  # Установка размера шрифта на colorbar
+        cbar.ax.yaxis.set_ticks([])  # Убрать цифры на colorbar
+
+        plt.figlegend(["Генетический вариант"], loc='upper center', bbox_to_anchor=(0.5, 1.01), ncol=2, fontsize=20, frameon=False)
         plt.subplots_adjust(wspace=.2)
         plt.show()
 
-    def _plot_single_scatter(self, ax, df1, df2, pop1, pop2):
-        af_pop1 = df1['Allele_Frequency'].values.astype(float).reshape(-1, 1)
-        af_pop2 = df2['Allele_Frequency'].values.astype(float)
+    def _plot_single_scatter(self, ax, df1, df2, pop1, pop2, sm):
+        """Строит график рассеяния для одной пары популяций"""
+        af_pop1 = df1['AF'].values.astype(float)
+        af_pop2 = df2['AF'].values.astype(float)
+        pos = df1['POS'].values.astype(float)  # Предположим, что в df1 и df2 есть столбец POS
 
-        predictions, r_squared, slope, intercept = self.fit_linear_regression(af_pop1, af_pop2)
-
-        self.slopes[f'{pop1}_{pop2}'] = slope.item()
-        self.intercepts[f'{pop1}_{pop2}'] = intercept.item()
-        self.r_squares[f'{pop1}_{pop2}'] = r_squared
-
-        sns.scatterplot(x=af_pop1.flatten(), y=af_pop2, ax=ax, color="skyblue", edgecolor='gray', s=50, alpha=0.9)
-        ax.plot(af_pop1, predictions, color="salmon", lw=1.5)
-        ax.text(0.05, 0.95, f"$R^2={r_squared:.2f}$", transform=ax.transAxes, fontsize=18, verticalalignment='top')
+        scatter = ax.scatter(af_pop1, af_pop2, c=pos, cmap='viridis', edgecolor='gray', s=50, alpha=0.5, norm=sm.norm)
         ax.set_xlabel(f"AF {pop1}", fontsize=18)
         ax.set_ylabel(f"AF {pop2}", fontsize=18)
+
         ax.tick_params(axis='x', labelsize=14)
         ax.tick_params(axis='y', labelsize=14)
-        ax.set_xlim(0.01, 1.1)
-        ax.set_ylim(0.01, 1.1)
 
-    def fit_linear_regression(self, af_pop1, af_pop2):
-        model = LinearRegression()
-        model.fit(af_pop1, af_pop2)
-        predictions = model.predict(af_pop1)
-        r_squared = r2_score(af_pop2, predictions)
-
-        return predictions, r_squared, model.coef_[0], model.intercept_
+        return scatter
 
     def _check_data(self, df_frequencies, populations):
         if df_frequencies is None:

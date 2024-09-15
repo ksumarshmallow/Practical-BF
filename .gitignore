@@ -4,3 +4,5 @@
 
 # ignore pycahce in all folders and subfolders in the project
 **/__pycache__/
+
+**/*old.py
