@@ -7,8 +7,6 @@ import random
 from dataclasses import dataclass
 
 import matplotlib.pyplot as plt
-from matplotlib.colors import Normalize
-from matplotlib.cm import ScalarMappable, get_cmap
 import seaborn as sns
 import warnings
 from utils.run_cmd import run_cmd
@@ -131,11 +129,11 @@ class GeneticVariantAnalyzer:
             self._plot_single_scatter(axs[i], dfs[pop1], dfs[pop2], pop1, pop2, sm)
 
         # Один colorbar для всех графиков
-        cbar = fig.colorbar(sm, ax=axs, orientation='vertical', pad=0.02)
-        cbar.ax.tick_params(labelsize=14)  # Установка размера шрифта на colorbar
+        cbar = fig.colorbar(sm, ax=axs, orientation='vertical', fraction=0.5, pad=0.04, anchor=(1.1, 1))
+        cbar.set_label(label='POS (hg38)', size='large')
         cbar.ax.yaxis.set_ticks([])  # Убрать цифры на colorbar
 
-        plt.figlegend(["Генетический вариант"], loc='upper center', bbox_to_anchor=(0.5, 1.01), ncol=2, fontsize=20, frameon=False)
+        fig.suptitle("Частоты генетических вариантов", fontsize=25)
         plt.subplots_adjust(wspace=.2)
         plt.show()
 
@@ -143,7 +141,7 @@ class GeneticVariantAnalyzer:
         """Строит график рассеяния для одной пары популяций"""
         af_pop1 = df1['AF'].values.astype(float)
         af_pop2 = df2['AF'].values.astype(float)
-        pos = df1['POS'].values.astype(float)  # Предположим, что в df1 и df2 есть столбец POS
+        pos = df1['POS'].values.astype(float)
 
         scatter = ax.scatter(af_pop1, af_pop2, c=pos, cmap='viridis', edgecolor='gray', s=50, alpha=0.5, norm=sm.norm)
         ax.set_xlabel(f"AF {pop1}", fontsize=18)
