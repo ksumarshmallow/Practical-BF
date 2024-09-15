@@ -7805,8 +7805,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">Решение<a class="anchor-link" href="#%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">¶</a></h2><h3 id="%D0%98%D0%B4%D0%B5%D1%8F">Идея<a class="anchor-link" href="#%D0%98%D0%B4%D0%B5%D1%8F">¶</a></h3><p>У мужчин с синдромом Клайнфельтера имеется как минимум одна лишняя X-хромосома (кариотип 47,XXY вместо нормального 46,XY). То есть у мужчин с данным синдромом 2 (или более) X-хромосомы.</p>
-<p>У здорового мужчины количество прочтений, приходящихся на X-хромосому, должно быть примерно такое же, как на Y-хромосому. Это означает, что покрытие (coverage) обеих хромосом будет схожим, так как у мужчин по одной X и Y хромосоме. Однако при синдроме Клайнфельтера ожидается, что количество ридов на X-хромосоме будет примерно в 2 раза больше, чем на Y-хромосоме, так как у таких людей две X-хромосомы.</p>
+<h2 id="%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">Решение<a class="anchor-link" href="#%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">¶</a></h2><h3 id="%D0%98%D0%B4%D0%B5%D1%8F">Идея<a class="anchor-link" href="#%D0%98%D0%B4%D0%B5%D1%8F">¶</a></h3><p>У мужчин с синдромом Клайнфельтера имеется как минимум одна лишняя X-хромосома (кариотип 47,XXY вместо нормального 46,XY). То есть, у мужчин с данным синдромом 2 (или более) X-хромосомы.</p>
+<p>Мы можем посмотреть на количество ридов, которое приходится на X- и Y-хромосомы у всех образцов. Если бы длина X-и Y-хромосом была одинаковой, то количество ридов, которое придется на X-хромосому у больного Кляйнфельтером, было бы в ~два раза больше количества ридов, пришедшихся на Y-хромосому. Однако, поскольку X-хромосома длиннее (в ~3 раза), даже у здорового мужчины количество ридов, которое придется на X-хромосому, будет больше числа ридов, пришедшихся на Y-хромосому.</p>
+<p>Поэтому для вычисления мужчиы с синдромом Кляйнфельтера необходима <strong>нормализация на длину хромосомы</strong>. И получившиеся величины уже можно сравнивать между собой (далее чуть подробнее, повторяться не хочу)</p>
 </div>
 </div>
 </div>
@@ -7830,9 +7831,9 @@ $$N_X = \frac{C_X}{L_X} \quad N_Y = \frac{C_Y}{L_Y},$$
 </li>
 </ol>
 <p>Ожидаем, что $\text{Ratio} =\frac{N_X}{N_Y}$ будет ранжироваться следующим образом:
-$$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{Ratio}[\text{disease\_male}]$$</p>
+$$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health male}] &lt; \text{Ratio}[\text{disease male}]$$</p>
 <ol start="3">
-<li><strong>Визуализация</strong>. Построим столбчатую диаграмму для каждого образца, которая будет отражать $N_X$ и $N_Y$. Так как у различных образцов различная глубина секвенирования, то для более красивой и корректной визуализации будем нормализовать значения $N_X$ и $N_Y$ на $N_{total}$ (нормализованное суммарное число ридов)</li>
+<li><strong>Визуализация</strong>. Построим столбчатую диаграмму для каждого образца, которая будет отражать $N_X$ и $N_Y$. Так как у различных образцов различная глубина секвенирования, то для более красивой и корректной визуализации будем нормализовать значения $N_X$ и $N_Y$ на $N_{\text{total}}$ (нормализованное суммарное число ридов)</li>
 </ol>
 </div>
 </div>
@@ -7995,7 +7996,7 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">Решение<a class="anchor-link" href="#%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">¶</a></h2><p>В принципе в этом задании расписывать особо нечего - просто с помощью <code>samtools</code> достаем метаинформацию о <code>.bam</code> файле (header), где можно найти информацию о сборке файл. Дальше нужно "запарсить" некоторые теги, которые могут содержать информацию о сборке (что указано в <a href="https://samtools.github.io/hts-specs/SAMv1.pdf">документации samtools</a>):</p>
+<h2 id="%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">Решение<a class="anchor-link" href="#%D0%A0%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D0%B5">¶</a></h2><p>В принципе в этом задании расписывать особо нечего - просто с помощью <code>samtools</code> достаем метаинформацию о <code>.bam</code> файле (header), где можно найти информацию о сборке файла. Дальше нужно "запарсить" некоторые теги, которые могут содержать информацию о сборке (что указано в <a href="https://samtools.github.io/hts-specs/SAMv1.pdf">документации samtools</a>):</p>
 <ul>
 <li><strong>@SQ</strong> - Reference sequence dictionary, в поле <strong>AS</strong>=Genome assembly identifier. Сразу скажу, что в этом файле я его не нашла, поэтому:</li>
 <li><strong>@PG</strong> - Program. В общем, можно попытаться извернуться и просмотреть все команды, которыми получали <code>.bam</code>-файл. Там должно быть название референсного генома, в котором может быть отсылка к сборке.</li>
@@ -8022,9 +8023,13 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">DATA_FOLDER_TASK3</span> <span class="o">=</span> <span class="s2">"task3/data"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Папка, в которой лежит .zip-нутый .bam файл</span>
+<span class="n">DATA_FOLDER_TASK3</span> <span class="o">=</span> <span class="s2">"task3/data"</span>
 
+<span class="c1"># Здесь указываем название .zip-нутого .bam-файла</span>
 <span class="n">task3_bampath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK3</span><span class="p">,</span> <span class="s2">"task3.bam.assembly.zip"</span><span class="p">)</span>
+
+<span class="c1"># Здесь название временной папки - она будет удалена после выполнения</span>
 <span class="n">extracted_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK3</span><span class="p">,</span> <span class="s2">"tmp"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8186,8 +8191,10 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">DATA_FOLDER_TASK4</span> <span class="o">=</span> <span class="s2">"task4/data"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Папка, в которой лежит .bam файл</span>
+<span class="n">DATA_FOLDER_TASK4</span> <span class="o">=</span> <span class="s2">"task4/data"</span>
 
+<span class="c1"># Название .bam-файла</span>
 <span class="n">task4_bampath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK4</span><span class="p">,</span> <span class="s2">"task4.bam"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8371,28 +8378,6 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="%D0%92%D1%8B%D0%B2%D0%BE%D0%B4">Вывод<a class="anchor-link" href="#%D0%92%D1%8B%D0%B2%D0%BE%D0%B4">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Какое-то достаточно низкое покрытие.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-5">Задание 5<a class="anchor-link" href="#%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-5">¶</a></h1><p>Определить сборку (референсный геном) VCF файла.</p>
 <p><a href="https://storage.yandexcloud.net/genotek-testing/employees/trofimov/hse/seminar1/vcf_assembly/input.vcf.assembly.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=wgMztS8ws2HPY6sgnw38%2F20240911%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240911T160139Z&amp;X-Amz-Expires=864000&amp;X-Amz-Signature=32C2612AC86282B1DF9D75A16C39BC160F5CB1A9E3350E8D382820813F223787&amp;X-Amz-SignedHeaders=host">Data</a></p>
 </div>
@@ -8432,9 +8417,13 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">DATA_FOLDER_TASK5</span> <span class="o">=</span> <span class="s2">"task5/data"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Папка, в которой лежит .zip-нутый .vcf файл</span>
+<span class="n">DATA_FOLDER_TASK5</span> <span class="o">=</span> <span class="s2">"task5/data"</span>
 
+<span class="c1"># Здесь указываем название .zip-нутого .vcf-файла</span>
 <span class="n">task5_vcfpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK5</span><span class="p">,</span> <span class="s2">"task5.input.vcf.assembly.zip"</span><span class="p">)</span>
+
+<span class="c1"># Здесь название временной папки - она будет удалена после выполнения задания</span>
 <span class="n">extracted_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK5</span><span class="p">,</span> <span class="s2">"tmp"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8460,7 +8449,7 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Распаковка файла во временную папку</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1. Распаковка файла во временную папку</span>
 <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">task5_vcfpath</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
     <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Files: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
@@ -8490,7 +8479,7 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Указываем путь к файлу, находящимся во временной папке</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2. Указываем путь к файлу, находящимся во временной папке</span>
 <span class="n">task5_vcfpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">,</span> <span class="s2">"ki3640.imputed.vcf.gz"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8603,7 +8592,8 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 4. Удаляем временную папку</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8666,7 +8656,10 @@ $$\text{Ratio}[\text{female}] &lt; \text{Ratio}[\text{health\_male}] &lt; \text{
 <div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">DATA_FOLDER_TASK6</span> <span class="o">=</span> <span class="s2">"task6/data"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Папка, в которой лежит .vcf.gz файл</span>
+<span class="n">DATA_FOLDER_TASK6</span> <span class="o">=</span> <span class="s2">"task6/data"</span>
+
+<span class="c1"># Название .vcf.gz-файла</span>
 <span class="n">task6_vcfpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK6</span><span class="p">,</span> <span class="s2">"task6.vcf.gz"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9113,9 +9106,13 @@ dtype: bool</pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">DATA_FOLDER_TASK7</span> <span class="o">=</span> <span class="s2">"task7/data"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Папка, в которой лежит .zip с файлами</span>
+<span class="n">DATA_FOLDER_TASK7</span> <span class="o">=</span> <span class="s2">"task7/data"</span>
 
+<span class="c1"># Здесь указываем название .zip</span>
 <span class="n">task7_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK7</span><span class="p">,</span> <span class="s2">"task7.zip"</span><span class="p">)</span>
+
+<span class="c1"># Здесь название временной папки - она будет удалена после выполнения задания</span>
 <span class="n">extracted_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK7</span><span class="p">,</span> <span class="s2">"tmp"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9236,6 +9233,8 @@ dtype: bool</pre>
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">population_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">,</span> <span class="s1">'tubes_pop.tsv'</span><span class="p">)</span>
 <span class="n">frequency_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extracted_dir</span><span class="p">,</span> <span class="s1">'ALL.chr15.subset.hg38.annotated.clean.vcf.gz'</span><span class="p">)</span>
+
+<span class="c1"># Здесь - название файла, который будет содержать AF для каждой популяции (и находится в папке DATA_FOLDER_TASK7)</span>
 <span class="n">af_savepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_FOLDER_TASK7</span><span class="p">,</span> <span class="s1">'AF_populations.csv'</span><span class="p">)</span>
 </pre></div>
 </div>
