@@ -130,7 +130,7 @@ class GeneticVariantAnalyzer:
 
         # Один colorbar для всех графиков
         cbar = fig.colorbar(sm, ax=axs, orientation='vertical', fraction=0.5, pad=0.04, anchor=(1.1, 1))
-        cbar.set_label(label='POS (hg38)', size='large')
+        cbar.set_label(label='POS (chr15, hg38)', size='large')
         cbar.ax.yaxis.set_ticks([])  # Убрать цифры на colorbar
 
         fig.suptitle("Частоты генетических вариантов", fontsize=25)
