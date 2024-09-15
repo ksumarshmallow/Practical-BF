@@ -1,7 +1,7 @@
 import os
 import re
 import pandas as pd
-from typing import List, Dict
+from typing import Dict
 from dataclasses import dataclass
 
 from utils.run_cmd import run_cmd

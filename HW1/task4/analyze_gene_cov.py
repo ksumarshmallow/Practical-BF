@@ -1,6 +1,5 @@
 import os
 import mygene
-from subprocess import PIPE
 from dataclasses import dataclass
 
 from utils.run_cmd import run_cmd

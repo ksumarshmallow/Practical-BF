@@ -1,0 +1,20 @@
+name: practical-bf
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12.4
+  - pip
+  - tqdm==4.66.5
+  - pandas==2.2.2
+  - matplotlib==3.9.2
+  - seaborn==0.13.2
+  - mygene==3.2.2
+  - numpy==2.1.1
+  - plotly==5.24.1
+  - samtools=1.20
+  - bedtools=2.31.1
+  - bcftools=1.19
+  - pip:
+      - re==2.2.1  # возможно не нужно
