@@ -43,94 +43,193 @@ Practical-BF/
 ------------
 ## **Установка**
 
-Этот проект может быть установлен двумя способами: с использованием Conda или PDM (если у вас нет Conda). Следуйте инструкциям в зависимости от вашего предпочтения.
-
-### 1. С помощью Conda
-
-Чтобы создать среду и установить все зависимости через Conda, выполните следующие шаги:
-
-1. **Клонируйте репозиторий**
-
+### 1. Клонирование репозитория
 ```bash
+cd ~
 git clone https://github.com/ksumarshmallow/Practical-BF.git
 cd Practical-BF
 ```
 
-2. **Создайте и активируйте среду conda**
+### 2. Создание виртуальной среды
+
+Можете использовать любую виртуальную среду. Здесь представлены два варианта по их установке: виртуальная среда Python и conda
+
+#### 2.1 Виртуальная среда Python
+
+0. Установите необходимую версию python (можете попробовать использовать версию по умолчанию. Но в этом проекте рекомендуется использовать python 3.12). Для установки python определенной версии без прав **sudo** можно использовать `pyenv`:
 
 ```bash
-conda env create -f environment.yml
-conda activate practical-bf
+cd ~
+curl https://pyenv.run | bash
+source ~/.bashrc
+pyenv install 3.12.4
 ```
 
-Это создаст среду `practical-bf` с установленными python-библиотеками и инструментами. Инструменты `samtools`, `bedtools`, и `bcftools` будут установлены автоматически через bioconda.
+1. Создайте виртуальную среду:
 
-Теперь вы можете работать с проектом в активированной среде!
+    ```bash
+    python3.12 -m venv .venv
+    ```
 
-### 2. С помощью pdm
+2. Активируйте виртуальную среду:
 
-Если вы не используете Conda, можно установить зависимости с помощью PDM.
+    - Для Linux/MacOS:
 
-1. **Установите PDM**
+      ```bash
+      source .venv/bin/activate
+      ```
 
-Если PDM у вас еще не установлен, его можно установить через pip:
+    - Для Windows:
 
+      ```bash
+      .venv\Scripts\activate
+      ```
+
+#### 2.2 Виртуальная среда conda
+
+1. Создайте виртуальную среду conda с желаемой версией python (здесь использовался 3.12.4)
+    ```bash
+    conda create -n practical_bf python=3.12.4
+    ```
+
+    Можете создать виртуальную среду с вресией python по умолчанию:
+   ```bash
+    conda create -n practical_bf
+    ``` 
+
+3. Активируйте виртуальную среду:
+    ```bash
+    conda activate practical_bf
+    ```
+
+4. Установите в виртаульной среде ipykernel - необходимо для работы в .ipynb в той же среде
+    ```bash
+    conda install ipykernel
+    ipython kernel install --user --name=practical_bf
+    ```
+
+### 3. Установка зависимостей
 ```bash
-pip install pdm
+pip install -r requirements.txt
 ```
 
-Либо, если у вас установлен Homebrew (для macOS/Linux), можно установить через него:
+### 4. Установка инструментов
 
+#### Если у вас есть права `sudo`
+1. **Установка зависимостей**
 ```bash
-brew install pdm
+sudo apt-get update
+sudo apt-get install build-essential autoconf zlib1g-dev
 ```
 
-2. **Клонируйте репозиторий**
-
+2. **Установка инструментов** (только последняя версия)
 ```bash
-git clone https://github.com/ksumarshmallow/Practical-BF.git
-cd Practical-BF
+sudo apt-get install bedtools samtools bcftools
 ```
 
-3. **Настройте версию python**
+#### Установка `samtools`
 
-Если у вас установлен Python 3.12:
+1. **Скачайте исходный код с официального сайта**. Выберите нужную версию по [этой ссылке](https://github.com/samtools/samtools/releases/) и замените версию в команде:
 
-```bash
-pdm use python3.12
-```
+    ```bash
+    wget https://github.com/samtools/samtools/releases/download/1.20/samtools-1.20.tar.bz2
+    tar -xjf samtools-1.20.tar.bz2
+    cd samtools-1.20
+    ```
 
-Если он не установлен, установите Python 3.12:
+2. **Создайте пользовательский каталог для установки**:
 
-```bash
-pdm install --python 3.12
-```
+    ```bash
+    mkdir -p $HOME/local
+    ```
 
-4. **Установите зависимости**
+3. **Соберите и установите `samtools` в пользовательский каталог**:
 
-Выполните команду для установки всех зависимостей проекта через PDM:
+    ```bash
+    ./configure --prefix=$HOME/local
+    make
+    make install
+    ```
 
-```bash
-pdm install
-```
+4. **Добавьте каталог в `PATH`**:
 
-PDM создаст виртуальное окружение и установит все зависимости, указанные в `pyproject.toml`.
+    ```bash
+    export PATH=$HOME/local/bin:$PATH
+    source ~/.bashrc
+    ```
 
-5. **Установка инструментов**
+5. **Проверьте установку**:
 
-PDM не может установить инструменты командной строки. Поэтому `bcftools` (1.19), `samtools` (1.20) и `bedtools` (2.31.1) придется устанавливать самостоятельно. Например, если вы используете Ubuntu/Debian и у вас есть права sudo, можно сделать так:
+    ```bash
+    samtools --version
+    ```
 
-```bash
-sudo apt-get install samtools=1.20 bedtools=2.31.1 bcftools=1.19
-```
+#### Установка `bedtools`
 
-6. **Запуск проекта**
+1. **Скачайте исходный код с официального сайта**. Выберите нужную версию по [ссылке](https://bedtools.readthedocs.io/en/latest/content/history.html) и замените версию в команде:
 
-После установки зависимостей и инструментов вы можете работать с проектом:
+    ```bash
+    wget https://github.com/arq5x/bedtools2/releases/download/v2.31.1/bedtools-2.31.1.tar.gz
+    tar -xzf bedtools-2.31.1.tar.gz
+    cd bedtools2
+    ```
 
-```bash
-pdm run start
-```
+2. **Соберите `bedtools`**:
+
+    ```bash
+    make
+    ```
+
+3. **Создайте каталог для установки и скопируйте исполняемый файл `bedtools` в него**:
+
+    ```bash
+    mkdir -p $HOME/.local/bin
+    cp bin/bedtools $HOME/.local/bin/
+    ```
+
+4. **Добавьте каталог в `PATH`**:
+
+    ```bash
+    export PATH="$HOME/.local/bin:$PATH"
+    source ~/.bashrc
+    ```
+
+5. **Проверьте установку**:
+
+    ```bash
+    bedtools --version
+    ```
+
+#### Установка `bcftools`
+
+1. **Скачайте исходный код с официального сайта**. Выберите нужную версию по [ссылке](https://github.com/samtools/bcftools/releases/) и замените версию в команде:
+
+    ```bash
+    wget https://github.com/samtools/bcftools/releases/download/1.19/bcftools-1.19.tar.bz2
+    tar -xjf bcftools-1.19.tar.bz2
+    cd bcftools-1.19
+    ```
+
+2. **Соберите и установите `bcftools` в пользовательский каталог**:
+
+    ```bash
+    make
+    mkdir -p $HOME/.local/bin
+    cp bcftools $HOME/.local/bin/
+    ```
+
+3. **Добавьте каталог в `PATH`**:
+
+    ```bash
+    export PATH="$HOME/.local/bin:$PATH"
+    source ~/.bashrc
+    ```
+
+4. **Проверьте установку**:
+
+    ```bash
+    bcftools --version
+    ```
 
 ------------
 # **Авторы**
