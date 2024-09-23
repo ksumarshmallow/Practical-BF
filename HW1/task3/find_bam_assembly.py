@@ -53,3 +53,28 @@ class BamAssemblyFinder:
         
         if return_info:
             return result
+        
+@dataclass
+class BamAssemblyFinderPrecise:
+    bam_file_path: str
+
+    def __post_init__(self):
+        self.header = self._get_bam_header()
+    
+    def _get_bam_header(self):
+        """Выполняет команду для извлечения заголовка BAM файла."""
+        cmd = [f"samtools view -H {self.bam_file_path} | grep '@SQ'"]
+        result = run_cmd(cmd, shell=True)
+        return result
+    
+    def extract_chromosome_lengths(self):
+        result = self._get_bam_header()
+        chrom_lengths = {}
+        for line in result.stdout.splitlines():
+            if line.startswith('@SQ'):
+                parts = line.split()
+                chrom = parts[1].replace('SN:', '')
+                length = int(parts[2].replace('LN:', ''))
+                chrom_lengths[chrom] = length
+        return chrom_lengths
+
