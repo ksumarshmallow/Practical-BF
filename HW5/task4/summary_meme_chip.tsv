@@ -1,0 +1,94 @@
+MOTIF_INDEX	MOTIF_SOURCE	MOTIF_ID	ALT_ID	CONSENSUS	WIDTH	SITES	E-VALUE	E-VALUE_SOURCE	MOST_SIMILAR_MOTIF_SOURCE	MOST_SIMILAR_MOTIF	URL
+1	MEME	SHNVCAGCTGYYVYB	MEME-1	SHNVCAGCTGYYVYB	15	200	7.6e-257	MEME	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00099_1 (Ascl2_primary)	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00099
+2	MEME	RRCAGCTG	MEME-2	RRCAGCTG	8	105	9.2e-047	MEME	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0796.1 (TGIF1)	http://jaspar2022.genereg.net/matrix/MA0796.1
+3	STREME	1-VCAGCTGCTS	STREME-1	VCAGCTGCTS	10	158	2.2e-030	STREME	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0500.2 (MYOG)	http://jaspar2022.genereg.net/matrix/MA0500.2
+4	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0521.2	Tcf12	NNACAGCTGTNN	12	163	3.1e-030	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0521.2
+5	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0816.1	Ascl2	ARCAGCTGCY	10	161	7.2e-029	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0816.1
+6	db/motif_databases/EUKARYOTE/jolma2013.meme	Ascl2_DBD	 	ARCAGCTGCY	10	162	1.8e-028	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=Ascl2_DBD
+7	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0048.2	NHLH1	CGCAGCTGCK	10	153	6.1e-028	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0048.2
+8	db/motif_databases/EUKARYOTE/jolma2013.meme	NHLH1_full	 	CGCAGCTGCK	10	154	1.6e-027	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=NHLH1_full
+9	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1993.1	Neurod2	VVCAGCTGBB	10	147	1.8e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1993.1
+10	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1641.1	MYF5	NVACAGCTGTBN	12	162	2.2e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1641.1
+11	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0500.2	MYOG	NDRCAGCTGYHN	12	159	2.8e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0500.2
+12	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0633.2	Twist2	NVCAGCTGBN	10	145	3.1e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0633.2
+13	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1100.2	ASCL1	VGCAGCTGCN	10	163	5.4e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1100.2
+14	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1997.1	Olig2	NVCAGCTGBN	10	148	5.9e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1997.1
+15	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0499.2	MYOD1	NNGCACCTGTCNB	13	163	7.1e-027	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0499.2
+16	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00099_1	Ascl2_primary	NKYARCAGCTGCYVHHK	17	164	1.6e-026	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00099
+17	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1619.1	Ptf1A	NNACAGCTGTNN	12	162	2.2e-026	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1619.1
+18	db/motif_databases/EUKARYOTE/jolma2013.meme	MSC_full	 	AACAGCTGTT	10	145	1.7e-025	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=MSC_full
+19	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1472.2	Bhlha15	NVACAGCTGTBN	12	162	6.2e-025	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1472.2
+20	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1631.1	ASCL1	NNGCACCTGCYNB	13	159	5.7e-024	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1631.1
+21	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1635.1	BHLHE22	NVCAGCTGBN	10	143	2.2e-023	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1635.1
+22	db/motif_databases/EUKARYOTE/jolma2013.meme	TCF3_DBD	 	HRCACCTGBN	10	160	3.6e-023	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=TCF3_DBD
+23	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0665.1	MSC	AACAGCTGTT	10	138	3.7e-023	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0665.1
+24	db/motif_databases/EUKARYOTE/jolma2013.meme	FIGLA_DBD	 	WMCACCTGKW	10	158	3.9e-022	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=FIGLA_DBD
+25	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0820.1	FIGLA	WMCACCTGKW	10	157	5.9e-021	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0820.1
+26	db/motif_databases/EUKARYOTE/jolma2013.meme	ID4_DBD	 	NRCACCTGBH	10	158	2.1e-019	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=ID4_DBD
+27	db/motif_databases/EUKARYOTE/jolma2013.meme	TCF4_DBD	 	HRCACCTGBN	10	160	2.6e-019	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=TCF4_DBD
+28	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0691.1	TFAP4	AWCAGCTGWT	10	145	3.0e-019	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0691.1
+29	db/motif_databases/EUKARYOTE/jolma2013.meme	TFAP4_full	 	AWCAGCTGWT	10	145	3.0e-019	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=TFAP4_full
+30	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1621.1	Rbpjl	NNVACACCTGTBNN	14	161	7.5e-019	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1621.1
+31	db/motif_databases/EUKARYOTE/jolma2013.meme	NHLH1_DBD	 	CGCAGCTGCS	10	133	1.1e-018	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=NHLH1_DBD
+32	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1618.1	Ptf1a	NNACAGATGTTNN	13	161	1.2e-018	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1618.1
+33	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00036_1	Myf6_primary	VVRSAACAGBTGTYHG	16	159	5.8e-017	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00036
+34	db/motif_databases/EUKARYOTE/jolma2013.meme	TFAP4_DBD	 	AWCAGCTGAT	10	150	5.9e-017	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=TFAP4_DBD
+35	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1620.1	Ptf1A	NVACACCTGTNN	12	161	1.2e-016	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1620.1
+36	STREME	2-SCAGCTGTCATKK	STREME-2	SCAGCTGTCATKK	13	46	8.8e-015	STREME	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0745.2 (SNAI2)	http://jaspar2022.genereg.net/matrix/MA0745.2
+37	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00046_1	Tcfe2a_primary	NKCHVCAGGTGCRNDNW	17	155	1.6e-014	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00046
+38	db/motif_databases/EUKARYOTE/jolma2013.meme	MESP1_DBD	 	HRCACCTGBN	10	162	1.8e-014	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=MESP1_DBD
+39	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0830.2	TCF4	NNGCACCTGCCNN	13	157	4.7e-014	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0830.2
+40	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0667.1	MYF6	AACARCTGTT	10	130	5.8e-014	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0667.1
+41	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1648.1	TCF12	NNCACCTGCNN	11	155	4.9e-013	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1648.1
+42	db/motif_databases/EUKARYOTE/jolma2013.meme	MYF6_full	 	AACARCTGTT	10	132	1.0e-012	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=MYF6_full
+43	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1109.1	NEUROD1	NRACAGATGGYNN	13	155	1.1e-012	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1109.1
+44	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0522.3	TCF3	NVCACCTGCNN	11	146	2.6e-011	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0522.3
+45	db/motif_databases/EUKARYOTE/jolma2013.meme	ZNF238_full	 	NATCCAGATGTKB	13	111	5.1e-011	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=ZNF238_full
+46	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0091.1	TAL1::TCF3	NSAMCATCTGKT	12	102	7.7e-011	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0091.1
+47	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0668.2	Neurod2	NNGRACAGATGGYNN	15	155	8.2e-011	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0668.2
+48	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0832.1	Tcf21	RYAACAGCTGTTRN	14	89	2.5e-010	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0832.1
+49	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0698.1	ZBTB18	NATCCAGATGTKB	13	104	2.9e-010	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0698.1
+50	db/motif_databases/EUKARYOTE/jolma2013.meme	Tcf21_DBD	 	RYAACAGCTGTTRN	14	95	4.5e-010	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=Tcf21_DBD
+51	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1468.1	ATOH7	AVCATATGBY	10	144	1.4e-009	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1468.1
+52	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1485.1	FERD3L	GCRMCAGCTGTYAC	14	69	3.9e-009	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1485.1
+53	db/motif_databases/EUKARYOTE/jolma2013.meme	Meis2_DBD_2	 	TGACAGSTGTCA	12	118	9.9e-009	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=Meis2_DBD_2
+54	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1123.2	TWIST1	NNDCCAGATGTBN	13	152	1.0e-008	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1123.2
+55	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0461.2	Atoh1	RMCATATGBY	10	118	1.6e-008	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0461.2
+56	db/motif_databases/EUKARYOTE/jolma2013.meme	Atoh1_DBD	 	RMCATATGBY	10	118	1.6e-008	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=Atoh1_DBD
+57	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00046_2	Tcfe2a_secondary	NRRKSCAGATGKYHBSR	17	144	5.7e-008	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00046
+58	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0745.2	SNAI2	NBGCACCTGTMNY	13	136	1.5e-007	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0745.2
+59	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1642.1	NEUROG2	NNVACAGATGGNN	13	154	4.0e-007	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1642.1
+60	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1529.1	NHLH2	GGGNCGCAGCTGCGYCCC	18	75	4.4e-007	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1529.1
+61	db/motif_databases/EUKARYOTE/jolma2013.meme	MEIS3_DBD_2	 	TGACAGSTGTCA	12	92	2.9e-006	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=MEIS3_DBD_2
+62	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1559.1	SNAI3	RRCAGGTGYA	10	101	6.0e-006	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1559.1
+63	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1570.1	TFAP4	AHCATRTGDT	10	127	7.5e-006	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1570.1
+64	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1571.1	TGIF2LX	TGACAGCTGTCA	12	88	8.6e-006	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1571.1
+65	db/motif_databases/EUKARYOTE/jolma2013.meme	ZNF238_DBD	 	MWTCCAGATGTKB	13	79	2.9e-005	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=ZNF238_DBD
+66	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1572.1	TGIF2LY	TGACAGCTGTCA	12	97	8.6e-005	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1572.1
+67	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00203_1	Pknox1_2364.2	WRNSASCTGTCAAWMC	16	72	1.3e-004	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00203
+68	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0797.1	TGIF2	TGACAGSTGTCA	12	41	1.5e-004	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0797.1
+69	db/motif_databases/EUKARYOTE/jolma2013.meme	TGIF2_DBD	 	TGACAGSTGTCA	12	44	3.2e-004	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=TGIF2_DBD
+70	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1966.1	TFAP4::ETV1	RSCGGAAGCAGSTGKN	16	94	4.5e-004	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1966.1
+71	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1941.1	ETV2::FIGLA	RSCGGAARCAGSTGBN	16	89	4.7e-004	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1941.1
+72	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00226_1	Mrg1_2246.2	WANBASCTGTCAAWAN	16	67	4.9e-004	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00226
+73	db/motif_databases/EUKARYOTE/jolma2013.meme	Meis3_DBD_2	 	TGACAGSTGTCA	12	65	7.6e-004	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=Meis3_DBD_2
+74	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1967.1	TFAP4::FLI1	ACCGGAAACAGCTGDY	16	46	9.0e-004	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1967.1
+75	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0774.1	MEIS2	TTGACAGS	8	123	1.1e-003	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0774.1
+76	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00205_1	Pknox2_3077.2	AARSRSCTGTCAATNB	16	90	1.3e-003	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00205
+77	db/motif_databases/EUKARYOTE/jolma2013.meme	MEIS2_DBD_2	 	TTGACAGS	8	126	1.4e-003	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=MEIS2_DBD_2
+78	db/motif_databases/EUKARYOTE/jolma2013.meme	TCF4_full	 	HRCACCTGBN	10	163	1.6e-003	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=TCF4_full
+79	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00258_1	Tgif2_3451.1	AANBAGCTGTCAAWMM	16	80	1.9e-003	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00258
+80	db/motif_databases/EUKARYOTE/jolma2013.meme	PKNOX2_DBD	 	TGACAGGTGTCA	12	25	2.0e-003	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=PKNOX2_DBD
+81	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00122_1	Tgif1_2342.2	NABWWTGACAGCTSVBD	17	90	4.8e-003	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00122
+82	db/motif_databases/MOUSE/uniprobe_mouse.meme	UP00186_1	Meis1_2335.1	WANBASCTGTCAAWAH	16	64	5.6e-003	CENTRIMO	 	 	http://thebrain.bwh.harvard.edu/uniprobe/details2.php?id=00186
+83	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0783.1	PKNOX2	TGACAGGTGTCA	12	24	6.4e-003	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0783.1
+84	MEME	STGCCTGCHGC	MEME-3	STGCCTGCHGC	11	26	6.9e-003	MEME	 	 	 
+85	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0744.2	SCRT2	NNWGCAACAGGTGDNN	16	117	1.2e-002	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0744.2
+86	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA1655.1	ZNF341	NRGAACAGCCNN	12	135	1.8e-002	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA1655.1
+87	db/motif_databases/EUKARYOTE/jolma2013.meme	PKNOX1_DBD	 	TGACAGSTGTCA	12	25	2.1e-002	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=PKNOX1_DBD
+88	db/motif_databases/EUKARYOTE/jolma2013.meme	Pknox2_DBD	 	TGACAGSTGTCA	12	23	2.1e-002	CENTRIMO	 	 	http://floresta.eead.csic.es/footprintdb/index.php?db=HumanTF:1.0&motif=Pknox2_DBD
+89	db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme	MA0743.2	SCRT1	NDWKCAACAGGTGKNN	16	106	3.4e-002	CENTRIMO	 	 	http://jaspar2022.genereg.net/matrix/MA0743.2
+
+# MEME-ChIP (Motif Analysis of Large Nucleotide Datasets): Version 5.5.7 released on Wed Jun 19 13:59:04 2024 -0700
+# The format of this file is described at https://meme-suite.org/meme//doc/meme-chip-output-format.html
+# meme-chip -oc . -time 240 -ccut 100 -dna -order 2 -minw 6 -maxw 15 -db db/motif_databases/MOUSE/uniprobe_mouse.meme -db db/motif_databases/JASPAR/JASPAR2022_CORE_vertebrates_non-redundant_v2.meme -db db/motif_databases/EUKARYOTE/jolma2013.meme -meme-mod zoops -meme-nmotifs 3 -meme-searchsize 100000 -streme-pvt 0.05 -streme-align center -streme-totallength 4000000 -centrimo-score 5.0 -centrimo-ethresh 10.0 4.fasta
